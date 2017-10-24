@@ -66,8 +66,8 @@ public class CallStandardExecutor extends CallExecutor
             case EOF:
             case EOLN:    return executeEofEoln(node, routineCode);
             
-            case IM:      return executeIM(node, routineCode);
-            case RE:      return executeRE(node, routineCode);
+            case IM:      return executeIm(node, routineCode);
+            case RE:      return executeRe(node, routineCode);
 
             case ABS:
             case SQR:     return executeAbsSqr(node, routineCode, actualNode);
