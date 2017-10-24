@@ -115,7 +115,7 @@ public class Predefined
         complexType = TypeFactory.createType(SCALAR);
         complexType.setIdentifier(complexId);
         complexId.setDefinition(DefinitionImpl.TYPE);
-        complexId.setTypeSpec(integerType);
+        complexId.setTypeSpec(complexType);
 
 
         // Undefined type.
@@ -157,6 +157,8 @@ public class Predefined
         readlnId  = enterStandard(symTabStack, PROCEDURE, "readln",  READLN);
         writeId   = enterStandard(symTabStack, PROCEDURE, "write",   WRITE);
         writelnId = enterStandard(symTabStack, PROCEDURE, "writeln", WRITELN);
+        reId     = enterStandard(symTabStack, PROCEDURE, "re",     RE);
+        imId	     = enterStandard(symTabStack, PROCEDURE, "im",     IM);
 
         absId    = enterStandard(symTabStack, FUNCTION, "abs",    ABS);
         arctanId = enterStandard(symTabStack, FUNCTION, "arctan", ARCTAN);
@@ -175,8 +177,7 @@ public class Predefined
         sqrtId   = enterStandard(symTabStack, FUNCTION, "sqrt",   SQRT);
         succId   = enterStandard(symTabStack, FUNCTION, "succ",   SUCC);
         truncId  = enterStandard(symTabStack, FUNCTION, "trunc",  TRUNC);
-        reId = enterStandard(symTabStack, FUNCTION, "re", RE);
-        imId = enterStandard(symTabStack, FUNCTION, "im", IM);
+        
     }
 
     /**
