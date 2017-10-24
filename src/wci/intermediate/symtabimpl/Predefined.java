@@ -28,6 +28,9 @@ public class Predefined
     public static TypeSpec booleanType;
     public static TypeSpec charType;
     public static TypeSpec undefinedType;
+// Garrick and Adam
+    public static TypeSpec complexType;
+  
 
     // Predefined identifiers.
     public static SymTabEntry integerId;
@@ -57,6 +60,10 @@ public class Predefined
     public static SymTabEntry sqrtId;
     public static SymTabEntry succId;
     public static SymTabEntry truncId;
+// Garrick and Adam
+    public static SymTabEntry complexId;
+    public static SymTabEntry imId;
+    public static SymTabEntry reId;
 
     /**
      * Initialize a symbol table stack with predefined identifiers.
@@ -102,6 +109,14 @@ public class Predefined
         charType.setIdentifier(charId);
         charId.setDefinition(DefinitionImpl.TYPE);
         charId.setTypeSpec(charType);
+        
+     // Type complex.
+        complexId = symTabStack.enterLocal("complex");
+        complexType = TypeFactory.createType(SCALAR);
+        complexType.setIdentifier(complexId);
+        complexId.setDefinition(DefinitionImpl.TYPE);
+        complexId.setTypeSpec(integerType);
+
 
         // Undefined type.
         undefinedType = TypeFactory.createType(SCALAR);
@@ -160,6 +175,8 @@ public class Predefined
         sqrtId   = enterStandard(symTabStack, FUNCTION, "sqrt",   SQRT);
         succId   = enterStandard(symTabStack, FUNCTION, "succ",   SUCC);
         truncId  = enterStandard(symTabStack, FUNCTION, "trunc",  TRUNC);
+        reId = enterStandard(symTabStack, FUNCTION, "re", RE);
+        imId = enterStandard(symTabStack, FUNCTION, "im", IM);
     }
 
     /**

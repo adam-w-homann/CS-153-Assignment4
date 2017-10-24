@@ -65,6 +65,9 @@ public class CallStandardExecutor extends CallExecutor
 
             case EOF:
             case EOLN:    return executeEofEoln(node, routineCode);
+            
+            case IM:      return executeIM(node, routineCode);
+            case RE:      return executeRE(node, routineCode);
 
             case ABS:
             case SQR:     return executeAbsSqr(node, routineCode, actualNode);
@@ -88,9 +91,21 @@ public class CallStandardExecutor extends CallExecutor
             case ROUND:
             case TRUNC:   return executeRoundTrunc(node, routineCode,
                                                    actualNode);
+            
+          
 
             default:      return null;  // should never get here
         }
+    }
+    
+    private Object executeIm(ICodeNode callNode,
+    							RoutineCode routineCode) {
+    		return "Hello";
+    }
+    
+    private Object executeRe(ICodeNode callNode,
+			RoutineCode routineCode) {
+    		return "Hello Garrick";
     }
 
     /**
