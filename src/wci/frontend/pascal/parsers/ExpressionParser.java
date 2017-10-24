@@ -215,6 +215,10 @@ public class ExpressionParser extends StatementParser
                     if (TypeChecker.areBothInteger(resultType, termType)) {
                         resultType = Predefined.integerType;
                     }
+                    
+                    if (TypeChecker.areBothComplex(resultType, termType)) {
+                    		resultType = Predefined.complexType;
+                    }
 
                     // Both real operands or one real and one integer operand
                     // ==> real result.

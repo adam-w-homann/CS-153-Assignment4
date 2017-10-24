@@ -112,11 +112,17 @@ public class Predefined
         
      // Type complex.
         complexId = symTabStack.enterLocal("complex");
-        complexType = TypeFactory.createType(SCALAR);
+        complexType = TypeFactory.createType(RECORD);
         complexType.setIdentifier(complexId);
         complexId.setDefinition(DefinitionImpl.TYPE);
         complexId.setTypeSpec(complexType);
-
+        SymTab complexSymTab = SymTabFactory.createSymTab(0);
+        SymTabEntry reEntry = complexSymTab.enter("re");
+        reEntry.setTypeSpec(realType);
+        SymTabEntry imEntry = complexSymTab.enter("im");
+        imEntry.setTypeSpec(realType);
+        complexType.setAttribute(RECORD_SYMTAB, complexSymTab);
+        
 
         // Undefined type.
         undefinedType = TypeFactory.createType(SCALAR);
