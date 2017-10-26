@@ -243,6 +243,7 @@ public class ExpressionExecutor extends StatementExecutor
     private Object executeBinaryOperator(ICodeNode node,
                                          ICodeNodeTypeImpl nodeType)
     {
+    		System.out.println("executeBinaryOperator hello, this must be printed eventually");
         // Get the two operand children of the operator node.
         ArrayList<ICodeNode> children = node.getChildren();
         ICodeNode operandNode1 = children.get(0);
