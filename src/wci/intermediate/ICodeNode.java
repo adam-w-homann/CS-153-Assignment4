@@ -26,7 +26,7 @@ public interface ICodeNode
 
     /**
      * Set the type specification of this node.
-     * @param typeSpec the type sprcification to set.
+     * @param typeSpec the type specification to set.
      */
     public void setTypeSpec(TypeSpec typeSpec);
 

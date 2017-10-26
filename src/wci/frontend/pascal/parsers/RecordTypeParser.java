@@ -1,6 +1,7 @@
 package wci.frontend.pascal.parsers;
 
 import java.util.EnumSet;
+import java.util.ArrayList;
 
 import wci.frontend.*;
 import wci.frontend.pascal.*;

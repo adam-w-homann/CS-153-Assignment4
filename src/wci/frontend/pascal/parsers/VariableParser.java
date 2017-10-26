@@ -19,6 +19,7 @@ import static wci.intermediate.symtabimpl.DefinitionImpl.VALUE_PARM;
 import static wci.intermediate.symtabimpl.DefinitionImpl.VAR_PARM;
 import static wci.intermediate.typeimpl.TypeFormImpl.ARRAY;
 import static wci.intermediate.typeimpl.TypeFormImpl.RECORD;
+import static wci.intermediate.typeimpl.TypeFormImpl.UNKNOWN;
 import static wci.intermediate.typeimpl.TypeKeyImpl.*;
 import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
@@ -219,7 +220,9 @@ public class VariableParser extends StatementParser
 
         Token token = nextToken();  // consume the . token
         TokenType tokenType = token.getType();
-        TypeForm variableForm = variableType.getForm();
+        TypeForm variableForm = variableType != null
+        								? variableType.getForm()
+        								: UNKNOWN;
 
         if ((tokenType == IDENTIFIER) && (variableForm == RECORD)) {
             SymTab symTab = (SymTab) variableType.getAttribute(RECORD_SYMTAB);
