@@ -215,16 +215,16 @@ public class ExpressionParser extends StatementParser
                     if (TypeChecker.areBothInteger(resultType, termType)) {
                         resultType = Predefined.integerType;
                     }
-
+                    
+                    if (TypeChecker.areBothComplex(resultType, termType)) {
+                			resultType = Predefined.complexType;
+                    }
+                    
                     // Both real operands or one real and one integer operand
                     // ==> real result.
                     else if (TypeChecker.isAtLeastOneReal(resultType,
                                                           termType)) {
                         resultType = Predefined.realType;
-                    }
-                    
-                    else if (TypeChecker.areBothComplex(resultType, termType)) {
-                        resultType = Predefined.complexType;
                     }
 
                     else {
@@ -318,16 +318,16 @@ public class ExpressionParser extends StatementParser
                     if (TypeChecker.areBothInteger(resultType, factorType)) {
                         resultType = Predefined.integerType;
                     }
+                    
+                    else if (TypeChecker.areBothComplex(resultType, factorType)) {
+                			resultType = Predefined.complexType;
+                    }
 
                     // Both real operands or one real and one integer operand
                     // ==> real result.
                     else if (TypeChecker.isAtLeastOneReal(resultType,
                                                           factorType)) {
                         resultType = Predefined.realType;
-                    }
-                    
-                    else if (TypeChecker.areBothComplex(resultType, factorType)) {
-                        resultType = Predefined.complexType;
                     }
 
                     else {
@@ -344,6 +344,10 @@ public class ExpressionParser extends StatementParser
                         TypeChecker.isAtLeastOneReal(resultType, factorType))
                     {
                         resultType = Predefined.realType;
+                    }
+                    
+                    else if (TypeChecker.areBothComplex(resultType, factorType)) {
+                			resultType = Predefined.complexType;
                     }
                     else {
                         errorHandler.flag(token, INCOMPATIBLE_TYPES, this);

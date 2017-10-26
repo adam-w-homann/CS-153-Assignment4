@@ -52,7 +52,6 @@ public class RepeatStatementParser extends StatementParser
 
         // Parse the expression.
         // The TEST node adopts the expression subtree as its only child.
-        // The LOOP node adopts the TEST node.
         ExpressionParser expressionParser = new ExpressionParser(this);
         ICodeNode exprNode = expressionParser.parse(token);
         testNode.addChild(exprNode);

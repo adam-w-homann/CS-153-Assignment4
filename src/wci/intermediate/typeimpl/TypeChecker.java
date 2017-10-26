@@ -38,14 +38,12 @@ public class TypeChecker
         return isInteger(type1) && isInteger(type2);
     }
     
-    public static boolean isComplex(TypeSpec type)
-    {
-        return (type != null) && (type.baseType() == Predefined.complexType);
+    public static boolean isComplex(TypeSpec type) {
+    		return (type != null) && (type.baseType() == Predefined.complexType);
     }
-    
-    public static boolean areBothComplex(TypeSpec type1, TypeSpec type2)
-    {
-        return isComplex(type1) && isComplex(type2);
+
+    public static boolean areBothComplex(TypeSpec type1, TypeSpec type2) {
+    		return isComplex(type1) && isComplex(type2);
     }
 
     /**

@@ -278,18 +278,18 @@ public class CaseStatementParser extends StatementParser
             else {
                 constantSet.add(value);
             }
-	
-	        // Type check: The constant type must be comparison compatible
-	        //             with the CASE expression type.
-	        if (!TypeChecker.areComparisonCompatible(expressionType,
-	                                                 constantType)) {
-	            errorHandler.flag(token, INCOMPATIBLE_TYPES, this);
-	        }
+        }
 
-	        constantNode.setTypeSpec(constantType);
+        // Type check: The constant type must be comparison compatible
+        //             with the CASE expression type.
+        if (!TypeChecker.areComparisonCompatible(expressionType,
+                                                 constantType)) {
+            errorHandler.flag(token, INCOMPATIBLE_TYPES, this);
         }
 
         token = nextToken();  // consume the constant
+
+        constantNode.setTypeSpec(constantType);
         return constantNode;
     }
 

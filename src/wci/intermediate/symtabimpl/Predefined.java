@@ -25,15 +25,15 @@ public class Predefined
     // Predefined types.
     public static TypeSpec integerType;
     public static TypeSpec realType;
-    public static TypeSpec complexType;
     public static TypeSpec booleanType;
     public static TypeSpec charType;
     public static TypeSpec undefinedType;
+ // Garrick and Adam
+    public static TypeSpec complexType;
 
     // Predefined identifiers.
     public static SymTabEntry integerId;
     public static SymTabEntry realId;
-    public static SymTabEntry complexId;
     public static SymTabEntry booleanId;
     public static SymTabEntry charId;
     public static SymTabEntry falseId;
@@ -59,6 +59,10 @@ public class Predefined
     public static SymTabEntry sqrtId;
     public static SymTabEntry succId;
     public static SymTabEntry truncId;
+ // Garrick and Adam
+    public static SymTabEntry complexId;
+    public static SymTabEntry imId;
+    public static SymTabEntry reId;
 
     /**
      * Initialize a symbol table stack with predefined identifiers.
@@ -90,23 +94,6 @@ public class Predefined
         realType.setIdentifier(realId);
         realId.setDefinition(DefinitionImpl.TYPE);
         realId.setTypeSpec(realType);
-        
-        // Type complex.
-        complexId = symTabStack.enterLocal("complex");
-        complexType = TypeFactory.createType(RECORD);
-        complexType.setIdentifier(complexId);
-        complexId.setDefinition(DefinitionImpl.TYPE);
-        complexId.setTypeSpec(complexType);
-        
-        // Complex fields re and im.
-        SymTab complexSymTab = SymTabFactory.createSymTab(0);
-        SymTabEntry reId = complexSymTab.enter("re");
-        SymTabEntry imId = complexSymTab.enter("im");
-        reId.setTypeSpec(realType);
-        imId.setTypeSpec(realType);
-        reId.setDefinition(FIELD);
-        imId.setDefinition(FIELD);
-        complexType.setAttribute(RECORD_SYMTAB, complexSymTab);
 
         // Type boolean.
         booleanId = symTabStack.enterLocal("boolean");
@@ -121,6 +108,40 @@ public class Predefined
         charType.setIdentifier(charId);
         charId.setDefinition(DefinitionImpl.TYPE);
         charId.setTypeSpec(charType);
+        
+        // Type complex.
+        complexId = symTabStack.enterLocal("complex");
+        complexType = TypeFactory.createType(RECORD);
+        complexType.setIdentifier(complexId);
+        complexId.setDefinition(DefinitionImpl.TYPE);
+        complexId.setTypeSpec(complexType);
+        
+        // Complex fields re and im.
+        SymTab complexSymTab = SymTabFactory.createSymTab(0);
+        SymTabEntry reEntry = complexSymTab.enter("re");
+        reEntry.setTypeSpec(realType);
+        reEntry.setDefinition(FIELD); // ask if this is needed
+        SymTabEntry imEntry = complexSymTab.enter("im");
+        reEntry.setDefinition(FIELD); //ask if this is needed
+        imEntry.setTypeSpec(realType);
+        complexType.setAttribute(RECORD_SYMTAB, complexSymTab);
+        
+        
+//        // Type complex.
+//        complexId = symTabStack.enterLocal("complex");
+//        complexType = TypeFactory.createType(RECORD);
+//        complexType.setIdentifier(complexId);
+//        complexId.setDefinition(DefinitionImpl.TYPE);
+//        complexId.setTypeSpec(complexType);
+//        complexType.setAttribute(RECORD_SYMTAB, symTabStack.push());
+//        SymTabEntry reEntry = symTabStack.enterLocal("re");
+//        reEntry.setTypeSpec(realType);
+//        reEntry.setDefinition(FIELD); // ask if this is needed
+//        SymTabEntry imEntry = symTabStack.enterLocal("im");
+//        reEntry.setDefinition(FIELD); //ask if this is needed
+//        imEntry.setTypeSpec(realType);
+//        symTabStack.pop();
+        
 
         // Undefined type.
         undefinedType = TypeFactory.createType(SCALAR);

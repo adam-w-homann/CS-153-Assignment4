@@ -253,11 +253,15 @@ public class ExpressionExecutor extends StatementExecutor
         Object operand2 = execute(operandNode2);
 
         boolean integerMode = false;
+        boolean complexMode = false;
         boolean characterMode = false;
         boolean stringMode = false;
 
         if ((operand1 instanceof Integer) && (operand2 instanceof Integer)) {
             integerMode = true;
+        }
+        else if (operandNode1.getTypeSpec().baseType() == Predefined.complexType && operandNode2.getTypeSpec().baseType() == operandNode1.getTypeSpec().baseType()) {
+        		complexMode = true;
         }
         else if ( ( (operand1 instanceof Character) ||
                     ( (operand1 instanceof String) &&
@@ -326,6 +330,11 @@ public class ExpressionExecutor extends StatementExecutor
                     }
                 }
             }
+            
+            else if(complexMode) {
+            		
+            }
+            
             else {
                 float value1 = operand1 instanceof Integer
                                    ? (Integer) operand1 : (Float) operand1;

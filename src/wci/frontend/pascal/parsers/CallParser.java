@@ -148,14 +148,11 @@ public class CallParser extends StatementParser
                 actualNode = ICodeFactory.createICodeNode(WRITE_PARM);
                 actualNode.addChild(exprNode);
 
-                TypeSpec type = exprNode.getTypeSpec() != null
-                						? exprNode.getTypeSpec().baseType()
-                						: null;
-                TypeForm form = type != null ? type.getForm() : UNKNOWN;
+                TypeSpec type = exprNode.getTypeSpec().baseType();
+                TypeForm form = type.getForm();
 
-                if (! (   (form == SCALAR) 
-                		   || (type == Predefined.booleanType) 
-                		   || ((type != null) && (type.isPascalString()))
+                if (! ( (form == SCALAR) || (type == Predefined.booleanType) ||
+                        (type.isPascalString())
                       )
                    )
                 {
